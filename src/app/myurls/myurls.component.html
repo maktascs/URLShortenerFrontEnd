@@ -1,0 +1,23 @@
+<div class="alert alert-success" role="alert" [hidden]="!this.deletedSuccess">
+    Deleted the URL successfully...
+    </div>
+
+<table class="table table-responsive" *ngIf="this.urls.length > 0">
+  <thead>
+    <td width="2%">No</td>
+    <td width="38%">Long URL</td>
+    <td width="25%">Short URL</td>
+    <td widtd="25%">Created At</td>
+    <td widtd="10%">Action</td>
+  </thead>
+<tbody>
+  <tr *ngFor="let x of this.urls;let i = index">
+    <td>{{i+1}}</td>
+    <td>{{x.longURL}}</td>
+    <td><a href="/{{x.shortURL}}">http://localhost:4200/{{x.shortURL}}</a></td>
+    <td>{{x.createdAt | date:'medium'}}</td>
+    <td><input class="btn btn-md btn-danger" type="button" [disabled]="this.deletedSuccess" value="X" (click)="deleteUrl(x.urlsid)"></td>
+  </tr>
+</tbody>
+</table>
+<div *ngIf="this.urls.length === 0">There are no URLs</div>

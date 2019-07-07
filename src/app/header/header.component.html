@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+  <a class="navbar-brand" routerLink="/main" routerLinkActive="active">URLShortener</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item ">
+        <a class="nav-link" routerLink="/main" routerLinkActive="active">Home </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
+      </li>
+      <li *ngIf="!userService.isUserLoggedIn()" class="nav-item">
+        <a class="nav-link" routerLink="/register" routerLinkActive="active" >Register</a>
+      </li>
+
+      <li *ngIf="userService.isUserLoggedIn()" class="nav-item">
+        <a  class="nav-link" routerLink="/addurl"  routerLinkActive="active">Add New URL</a>
+      </li>
+
+
+      <li *ngIf="userService.isUserLoggedIn()" class="nav-item">
+        <a  class="nav-link" routerLink="/myurls"  routerLinkActive="active">My Short URLS</a>
+      </li>
+
+      <li *ngIf="!userService.isUserLoggedIn()" class="nav-item">
+        <a  class="nav-link" routerLink="/login"  routerLinkActive="active">Login</a>
+      </li>
+      <li *ngIf="userService.isUserLoggedIn()" class="nav-item" >
+        <a class="nav-link"  (click)="logout()">Logout</a>
+      </li>   
+
+
+
+    </ul>
+  
+   
+   
+
+  
+  </div>
+</nav>
