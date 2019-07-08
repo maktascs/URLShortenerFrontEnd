@@ -1,8 +1,10 @@
+<div class="container">
 <div class="alert alert-success" role="alert" [hidden]="!this.deletedSuccess">
     Deleted the URL successfully...
     </div>
 
-<table class="table table-responsive" *ngIf="this.urls.length > 0">
+<table class="table table-responsive" *ngIf="this.urls.length > 0" >
+    <h1 class="diplay-5 text-center" >My URLS</h1>
   <thead>
     <td width="2%">No</td>
     <td width="38%">Long URL</td>
@@ -13,11 +15,17 @@
 <tbody>
   <tr *ngFor="let x of this.urls;let i = index">
     <td>{{i+1}}</td>
-    <td>{{x.longURL}}</td>
+    <td><a href="{{x.longURL}}" target="_blank">{{x.longURL}}</a></td>
     <td><a href="/{{x.shortURL}}">http://localhost:4200/{{x.shortURL}}</a></td>
     <td>{{x.createdAt | date:'medium'}}</td>
     <td><input class="btn btn-md btn-danger" type="button" [disabled]="this.deletedSuccess" value="X" (click)="deleteUrl(x.urlsid)"></td>
   </tr>
 </tbody>
 </table>
-<div *ngIf="this.urls.length === 0">There are no URLs</div>
+<div *ngIf="this.urls.length === 0 && !loading">There are no URLs</div>
+</div>
+<div *ngIf="loading" class="text-center">
+    <div class="spinner-border text-danger" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+</div>

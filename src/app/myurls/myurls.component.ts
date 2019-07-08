@@ -13,6 +13,7 @@ export class MyurlsComponent implements OnInit {
 userid:any={};
 urls:any=[];
 deletedSuccess=false;
+loading = true;
   constructor(private urlService:UrlsService,private userService:UserService) { }
 
   ngOnInit() {
@@ -45,10 +46,11 @@ location.reload();
     this.urlService.getUrls(this.userid.id).subscribe(
       data =>{
         this.urls =data;
+        this.loading=false;
         //console.log(this.urls);
       },
       error => {
-        alert(error);
+        alert(error.statusText);
       }
     );
     //console.log(this.userid.id)
